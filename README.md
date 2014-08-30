@@ -8,7 +8,7 @@ A three dimensional and space effecient menu. Meny works best in browsers with s
 ## Instructions
 
 #### 1. Download
-Add [meny.min.js](https://github.com/hakimel/Meny/blob/master/js/meny.min.js) to your project. The meny.min.js file is the only thing required, but you could optionally clone the repository if you want to get the default styles.
+Add [meny.js](https://github.com/hakimel/Meny/blob/master/js/meny.js) to your project. The meny.js file is the only thing required, but you could optionally clone the repository if you want to get the default styles.
 
 ### 2. Markup
 Meny requires two HTML elements to work: a **menu** and the page **contents**. The class names are not used by the library so chose anything you want.
@@ -52,6 +52,24 @@ var meny = Meny.create({
 	// The width of the menu (when using left/right position)
 	width: 260,
 
+	// The angle at which the contents will rotate to.
+	angle: 30,
+
+	// The mouse distance from menu position which can trigger menu to open.
+	threshold: 40,
+
+	// Width(in px) of the thin line you see on screen when menu is in closed position.
+	overlap: 6,
+
+	// The total time taken by menu animation.
+	transitionDuration: '0.5s',
+
+	// Transition style for menu animations
+	transitionEasing: 'ease',
+
+	// Gradient overlay for the contents
+	gradient: 'rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.65) 100%)',
+
 	// Use mouse movement to automatically open/close
 	mouse: true,
 
@@ -71,6 +89,8 @@ meny.open();
 meny.close();
 
 meny.isOpen(); // true/false
+
+meny.destroy(); // revert original DOM state, unbind events
 ```
 
 The wrapper element (parent of the **menu** and **contents**) is decorated with classes based on its state:
@@ -98,10 +118,26 @@ meny.addEventListener( 'close', function() {
 	// do something on close
 
 } );
+
+meny.addEventListener( 'opened', function() {
+
+	// do something right after meny is opened and transitions finished
+
+} );
+
+meny.addEventListener( 'closed', function() {
+
+	// do something right after meny is closed and transitions finished
+
+} );
 ```
 
 
 ## History
+
+#### 1.4.0
+- Adds `opened` and `closed` events
+- Adds `destroy` API method
 
 #### 1.3.0
 - Add ```touch``` and ```mouse``` config options
@@ -139,4 +175,4 @@ meny.addEventListener( 'close', function() {
 
 MIT licensed
 
-Copyright (C) 2012 Hakim El Hattab, http://hakim.se
+Copyright (C) 2014 Hakim El Hattab, http://hakim.se
